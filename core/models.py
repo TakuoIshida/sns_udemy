@@ -71,10 +71,10 @@ class FriendRequest(models.Model):
 
     class Meta:
         unique_together = (('ask_from', 'ask_to'))
-        
+
     def __str__(self):
         return str(self.ask_from) + '----->' + str(self.ask_to)
-    
+
 
 class Message(models.Model):
     message = models.CharField(max_length=140)
@@ -86,8 +86,7 @@ class Message(models.Model):
         settings.AUTH_USER_MODEL, related_name='reciever',
         on_delete=models.CASCADE
     )
-    
+
     def __str__(self):
         return self.sender
-    
-    
+
