@@ -1,19 +1,21 @@
-from django.shortcuts import render
 from rest_framework import generics, authentication, permissions
-from api_user import serializers
-from core.models import Profile, FriendRequest
+from ..api_user import serializers
+from ..core.models import Profile, FriendRequest
 from django.db.models import Q
 from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework import status
 from rest_framework.response import Response
-from core import custompermissions
-
+from ..core import custompermissions
+# from rest_framework.decorators import api_view
 # TODO import ↓内容を復習
 
 class CreateUserView(generics.CreateAPIView):
     serializer_class = serializers.UserSerializer
-
+# SOLID原則に従い、リクエストメソッドに応じて書き分けれる（単一責任）
+# @api_view(['GET'])
+# @api_view(['POST'])
+# def friendrequest(request, format=None)
 class FriendRequestViewSet(viewsets.ModelViewSet):
     queryset = FriendRequest.objects.all()
     serializer_class = serializers.FriendRequestSerializer

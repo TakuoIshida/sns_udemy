@@ -1,11 +1,13 @@
 from rest_framework import authentication, permissions
+from rest_framework.views import APIView
 from ..api_dm import serializers
 from ..core.models import Message
 from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.response import Response
-
-
+# from rest_framework.views import APIView
+# Class-based Views
+# class MessageViewSet(APIView):
 class MessageViewSet(viewsets.ModelViewSet):
 
     queryset = Message.objects.all()

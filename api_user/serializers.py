@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from rest_framework.authtoken.models import token
-from core.models import Profile, FriendRequest
+from rest_framework.authtoken.models import Token
+from ..core.models import Profile, FriendRequest
 
 class User(serializers.ModelSerializer):
 
@@ -12,7 +12,7 @@ class User(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = get_user_model().objects.create_user(**validated_data)
-        token.objects.create(user=user)
+        Token.objects.create(user=user)
         return user
 
 class ProfileSerializer(serializers.ModelSerializer):
