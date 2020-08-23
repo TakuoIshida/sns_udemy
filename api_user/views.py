@@ -7,7 +7,7 @@ from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework import status
 from rest_framework.response import Response
-from ..core import cumstompermissions
+from core import custompermissions
 
 # TODO import ↓内容を復習
 
