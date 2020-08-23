@@ -16,7 +16,7 @@ class User(serializers.ModelSerializer):
         return user
 
 class ProfileSerializer(serializers.ModelSerializer):
-    # user_pro = serializers.SerializerMethodField(sources=)
+    # user_pro = serializers.ReadOnlyField(source='user.username')
     created_on = serializers.DateTimeField(format="%Y-%m%d", read_only=True)
     class Meta:
         model=Profile
