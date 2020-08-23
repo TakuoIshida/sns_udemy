@@ -4,7 +4,8 @@ from api_user import serializers
 from core.models import Profile, FriendRequest
 from django.db.models import Q
 from rest_framework import viewsets
-from rest_framework import ValidationError
+from rest_framework.exceptions import ValidationError
+from rest_framework import status
 from rest_framework.response import Response
 
 
