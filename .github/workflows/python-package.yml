@@ -10,6 +10,9 @@ on:
       - develop
       - feature/*
       - fix/*
+  pull_request:
+    branches: 
+      - feature/*
 
 jobs:
   build:
