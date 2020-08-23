@@ -3,7 +3,7 @@ from core.models import Message, User, Profile, FriendRequest
 from django.db.models import Q
 
 
-class FriendsFileter(serializers.PrimaryKeyRelatedField):
+class FriendFilter(serializers.PrimaryKeyRelatedField):
 
     def get_queryset(self):
         print(self.context)

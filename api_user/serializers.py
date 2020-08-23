@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from rest_framework.authtoken,models import token
+from rest_framework.authtoken.models import token
 from core.models import Profile, FriendRequest
 
 class User(serializers.ModelSerializer):
