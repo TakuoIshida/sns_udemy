@@ -29,6 +29,8 @@ jobs:
     steps:
     - run: cd front
     - uses: actions/checkout@v2
+    - run: ls
+    - run: cd front
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:

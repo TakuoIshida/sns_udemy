@@ -1,8 +1,10 @@
 
-import { createMuiTheme } from '@material-ui/core/styles/createMuiTheme'
+import React from 'react'
+import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles'
 import indigo from '@material-ui/core/colors/indigo'
 import './App.css';
+import Navbar from './components/Navbar';
 
 const theme = createMuiTheme({
   parette: {
@@ -18,9 +20,9 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <MuiThemeProvider theme={theme}>
-
-    </MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
+        <Navbar />
+      </MuiThemeProvider>
   );
 }
 
