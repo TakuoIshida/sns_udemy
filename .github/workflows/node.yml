@@ -10,13 +10,9 @@ on:
       - develop
       - feature/*
       - fix/*
-    paths:
-      - front/*
   pull_request:
     branches:
       - feature/*
-    paths:
-      - front/*
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,10 +26,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+<<<<<<< HEAD
     - run: |
         cd front
         npm ci
     - run: |
         cd front
         npm run build --if-present
+=======
+    - run: cd front && npm ci
+    - run: cd front && npm run build --if-present
+>>>>>>> fc0667275a8ddde090db8969f0b8710270e969fe
 

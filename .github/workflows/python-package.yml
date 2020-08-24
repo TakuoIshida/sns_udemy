@@ -21,10 +21,14 @@ jobs:
       matrix:
         python-version: [3.7]
     # PythonのSECRETはgithubから登録し、以下のように引用できる
-    #env:
-    #   SECRET: ${{ secrets.SECRET}}
-
+    #　env:
+    #  　SECRET: ${{ secrets.SECRET}}
     steps:
+
+    # 環境変数を入れた.envファイルを生成する
+    # - name: Create .env file
+    #   run: echo "${{ secrets.ENV_PROD }}" > .env
+    # ↑ Secrets に定義した「ENV_PROD」の文字列の内容で「.env」というファイルを作成する
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
