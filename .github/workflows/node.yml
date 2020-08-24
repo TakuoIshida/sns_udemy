@@ -26,7 +26,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: export "::add-path::${GITHUB_WORKSPACE}/front"
+    - run: export PATH="${GITHUB_WORKSPACE}/front"
     - run: cd front && npm ci
     - run: npm run build --if-present
 
