@@ -23,6 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: cd front
+    - run: echo "::add-path::/home/runner/work/sns_udemy/sns_udemy/front/package.json"
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
