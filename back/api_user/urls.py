@@ -1,4 +1,4 @@
-from sns_udemy.api_user.views import CreateUserView
+from sns_udemy.back.api_user.views import CreateUserView
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from ..api_user import views
