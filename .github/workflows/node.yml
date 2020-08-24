@@ -11,12 +11,12 @@ on:
       - feature/*
       - fix/*
     paths:
-    - front/*
+      - front/*
   pull_request:
     branches:
       - feature/*
     paths:
-    - front/*
+      - front/*
 jobs:
   build:
     runs-on: ubuntu-latest
