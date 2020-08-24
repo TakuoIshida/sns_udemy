@@ -1,0 +1,26 @@
+// SCSSの書き方の例
+#Navbar {
+    // margin: auto;
+    // .wrap {
+    //     margin: 0 auto;
+    //     width: 200px;
+    //     .title {
+    //         font-size: medium;
+    //         &_row {
+    //             display: flex;
+    //             &_label {
+    //                 margin-left: 20px;
+    //             }
+    //         }
+    //     }
+    // }
+    .sign_out {
+        background-color: transparent;
+        color: lightgray;
+        margin-top: 7px;
+        font-size: 25px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+}
