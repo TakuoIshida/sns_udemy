@@ -10,14 +10,13 @@ on:
       - develop
       - feature/*
       - fix/*
+    paths:       
+    - back/*
   pull_request:
     branches: 
       - feature/*
-# Push events containing matching files
-#React.jsと同階層にPythonを置くため、Pathでテスト範囲を絞る
-#paths:       
- # - test/*
- # - *.xml
+    paths:       
+    - back/*
 jobs:
   build:
 
