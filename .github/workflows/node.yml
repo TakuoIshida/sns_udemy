@@ -10,13 +10,11 @@ on:
       - develop
       - feature/*
       - fix/*
-    paths:       
-    - front/*
   pull_request:
-    branches: 
+    branches:
       - feature/*
-    paths:       
-    - front/*
+      - fix/*
+
 jobs:
   build:
 
@@ -24,16 +22,16 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
-    - run: ls
-    - run: cd front
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
+    - run: cd front && npm ci
+    - run: |
+        cd front
+        npm run build --if-present
 
