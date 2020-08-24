@@ -10,18 +10,16 @@ on:
       - develop
       - feature/*
       - fix/*
-    paths:       
+    paths:
     - front/*
   pull_request:
-    branches: 
+    branches:
       - feature/*
-    paths:       
+    paths:
     - front/*
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [12.x, 14.x]
