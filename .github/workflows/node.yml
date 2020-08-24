@@ -6,17 +6,13 @@ name: Node.js CI
 on:
   push:
     branches:
-    - master
-    - develop
-    - feature/*
-    - fix/*
-    paths:
-    - front/*
+      - master
+      - develop
+      - feature/*
+      - fix/*
   pull_request:
     branches:
-    - feature/*
-    paths:
-    - front/*
+      - feature/*
 jobs:
   build:
     runs-on: ubuntu-latest
