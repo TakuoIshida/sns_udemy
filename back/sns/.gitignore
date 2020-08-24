@@ -1,0 +1,5 @@
+.env
+sns/__pycache__
+core/__pycache__
+api_user/__pycache__
+api_dm/__pycache__
