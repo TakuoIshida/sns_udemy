@@ -10,13 +10,9 @@ on:
       - develop
       - feature/*
       - fix/*
-    paths:       
-    - back/*
   pull_request:
-    branches: 
+    branches:
       - feature/*
-    paths:       
-    - back/*
 jobs:
   build:
 
@@ -24,8 +20,15 @@ jobs:
     strategy:
       matrix:
         python-version: [3.7, 3.8]
-
+    # PythonのSECRETはgithubから登録し、以下のように引用できる
+    #　env:
+    #  　SECRET: ${{ secrets.SECRET}}
     steps:
+
+    # 環境変数を入れた.envファイルを生成する
+    # - name: Create .env file
+    #   run: echo "${{ secrets.ENV_PROD }}" > .env
+    # ↑ Secrets に定義した「ENV_PROD」の文字列の内容で「.env」というファイルを作成する
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
@@ -42,4 +45,4 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    
+
