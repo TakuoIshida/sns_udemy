@@ -41,7 +41,7 @@ const ApiContextProvider = (props) => {
 
             try{
                 const profile_urls = 'http://localhost:8000/api/user/profile/'
-                const res = await axios.get('profile_urls',  {
+                const res = await axios.get(profile_urls,  {
                     headers: {
                         'Authorization': `Token ${token}`
                     }
@@ -95,7 +95,7 @@ const ApiContextProvider = (props) => {
     const deleteProfile = async() => {
         try {
             const delete_urls = `http://localhost:8000/api/user/profile/${profile.id}`
-            const res = await axios.post(delete_urls, {
+            await axios.post(delete_urls, {
                 headers: {
                     'ContentType': 'appilcation/json',
                     'Authorization': `Token ${token}`
