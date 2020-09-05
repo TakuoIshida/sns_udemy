@@ -1,12 +1,12 @@
 import React, { createContext, useState, useEffect} from 'react'
 import { withCookies } from 'react-cookie'
-import axios from 'aios'
+import axios from 'axios'
 export const ApiContext = createContext()
 
-const ApiContext = (props) => {
+const ApiContextProvider = (props) => {
 
     const token = props.cookies.get('current-token')
-    const [profile, setProfile] = userState([])
+    const [profile, setProfile] = useState([])
     const [profiles, setProfiles] = useState([])
     const [editedProfile, setEditedProfile] = useState({id: '', nickName: ''})
     const [askList, setAskList] = useState([])
@@ -41,7 +41,7 @@ const ApiContext = (props) => {
 
             try{
                 const profile_urls = 'http://localhost:8000/api/user/profile/'
-                const res = await axios.get('profile_urls',  {
+                const res = await axios.get(profile_urls,  {
                     headers: {
                         'Authorization': `Token ${token}`
                     }
@@ -95,7 +95,7 @@ const ApiContext = (props) => {
     const deleteProfile = async() => {
         try {
             const delete_urls = `http://localhost:8000/api/user/profile/${profile.id}`
-            const res = await axios.post(delete_urls, {
+            await axios.post(delete_urls, {
                 headers: {
                     'ContentType': 'appilcation/json',
                     'Authorization': `Token ${token}`
@@ -114,10 +114,10 @@ const ApiContext = (props) => {
         }
     }
 
-    const editedPrifile = async() => {
+    const editProfile = async() => {
         const editData = new FormData()
         editData.append("nickName", editedProfile.nickName)
-        cover.name && editData.append('img', coer, cover.name)
+        cover.name && editData.append('img', cover, cover.name)
         try{
             const edited_urls = `http://localhost:8000/api/user/profile/${profile.id}`
             const res = await axios.put(edited_urls, editData,  {
@@ -209,10 +209,27 @@ const ApiContext = (props) => {
         }
     }
     return (
-        <div>
-
-        </div>
+        <ApiContext.Provider value={{
+            profile,
+            profiles,
+            cover,
+            setCover,
+            askList,
+            askListFull,
+            inbox,
+            newRequestFriend,
+            createProfile,
+            editProfile,
+            deleteProfile,
+            changeApprovalRequest,
+            sendDMCont,
+            editedProfile,
+            setEditedProfile,
+        }}>
+            {/* props.の子要素を入れ込む */}
+        {props.children}
+        </ApiContext.Provider>
     )
 }
 
-export default ApiContext
+export default withCookies(ApiContextProvider)
