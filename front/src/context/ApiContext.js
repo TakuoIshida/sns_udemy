@@ -209,9 +209,25 @@ const ApiContext = (props) => {
         }
     }
     return (
-        <div>
-
-        </div>
+        <ApiContext.Provider value={{
+            profile,
+            profiles,
+            cover,
+            setCover,
+            askList,
+            askListFull,
+            inbox,
+            newRequestFriend,
+            createProfile,
+            editedProfile,
+            deleteProfile,
+            changeApprovalRequest,
+            sendDMCont,
+            setEditedProfile
+        }}>
+            {/* props.の子要素を入れ込む */}
+        {props.children}
+        </ApiContext.Provider>
     )
 }
 
