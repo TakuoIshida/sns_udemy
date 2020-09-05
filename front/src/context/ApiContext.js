@@ -223,7 +223,8 @@ const ApiContextProvider = (props) => {
             deleteProfile,
             changeApprovalRequest,
             sendDMCont,
-            setEditedProfile
+            editedProfile,
+            setEditedProfile,
         }}>
             {/* props.の子要素を入れ込む */}
         {props.children}
