@@ -149,6 +149,65 @@ const ApiContext = (props) => {
             console.log("error")
         }
     }
+
+    const sendDMCont = async(uploadDM) => {
+        try {
+            const message_urls = 'http://localhost:8000/api/dm/message'
+            await axios.post(message_urls, uploadDM,  {
+                headers: {
+                    'ContentType': 'appilcation/json',
+                    'Authorization': `Token ${token}`
+                }
+            })
+        }
+        catch {
+            console.log("error")
+        }
+    }
+    // 相手が承認後、リクエストユーザーにapproved=trueを返して、メッセージ許可を出す関数
+    const changeApprovalRequest = async(uploadDataAsk, ask) => {
+        try {
+            const ask_urls = `http://localhost:8000/api/user/approval/${ask.id}`
+            const res = await axios.post(ask_urls, uploadDataAsk,  {
+                headers: {
+                    'ContentType': 'appilcation/json',
+                    'Authorization': `Token ${token}`
+                }
+            })
+            setAskList(askList.map(item=>(item.id===ask.id? res.data : item)))
+            const newDataAsk = new FormData()
+            newDataAsk.append("askTo", ask.askFrom)
+            newDataAsk.append("approved", true)
+
+            // 万一、申請時に同時に相手も申請していた場合を考慮し、更新のPUT処理を追加する
+            const newDataAskPut = new FormData()
+            newDataAskPut.append("askTo", ask.askFrom)
+            newDataAskPut.append("askFrom", ask.askTo)
+            newDataAskPut.append("approved", true)
+            // item.askFrom === profile.userPro : 承認を出す側がログインユーザーと一致しているか？
+            // item.askTo === ask.askFrom　：　承認する先が、リクエストを送ってくれた相手（askFrom）と一致しているか？
+            // 両方の条件を満たせば、resp = trueとなる
+            const resp = askListFull.filter(item => {return (item.askFrom === profile.userPro && item.askTo === ask.askFrom)})
+            // respがなければ、→　POSTで新規追加、あれば、PUTで更新
+            !resp[0]?
+            await axios.post('http://localhost:8000/api/user/approval/', newDataAsk, {
+                headers: {
+                    'ContentType': 'appilcation/json',
+                    'Authorization': `Token ${token}`
+                }
+            })
+            :
+            await axios.put(`http://localhost:8000/api/user/approval/${resp[0].id}`, newDataAskPut, {
+                headers: {
+                    'ContentType': 'appilcation/json',
+                    'Authorization': `Token ${token}`
+                }
+            })
+        }
+        catch {
+            console.log("error")
+        }
+    }
     return (
         <div>
 
