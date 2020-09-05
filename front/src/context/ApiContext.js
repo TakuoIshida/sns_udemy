@@ -3,7 +3,7 @@ import { withCookies } from 'react-cookie'
 import axios from 'aios'
 export const ApiContext = createContext()
 
-const ApiContext = (props) => {
+const ApiContextProvider = (props) => {
 
     const token = props.cookies.get('current-token')
     const [profile, setProfile] = userState([])
@@ -231,4 +231,4 @@ const ApiContext = (props) => {
     )
 }
 
-export default ApiContext
+export default withCookies(ApiContextProvider)
