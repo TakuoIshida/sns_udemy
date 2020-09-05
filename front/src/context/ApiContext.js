@@ -114,7 +114,7 @@ const ApiContextProvider = (props) => {
         }
     }
 
-    const editedProfile = async() => {
+    const editProfile = async() => {
         const editData = new FormData()
         editData.append("nickName", editedProfile.nickName)
         cover.name && editData.append('img', cover, cover.name)
@@ -219,7 +219,7 @@ const ApiContextProvider = (props) => {
             inbox,
             newRequestFriend,
             createProfile,
-            editedProfile,
+            editProfile,
             deleteProfile,
             changeApprovalRequest,
             sendDMCont,
